@@ -1,0 +1,14 @@
+test= test dataset
+train = train dataset
+subject_test = id # for test dataset
+subject_train = id # for train dataset
+
+features = headers for train and test datasets
+featured = vector of headers for train and test datasets
+
+train_y = activity type code
+train_x = activity type code
+
+
+fullset = merged training and testing variables
+mean_std = selection of fullset, includes only mean and std for each measured variable

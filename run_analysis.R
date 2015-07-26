@@ -12,6 +12,7 @@ run_analysis<- function(directory) {
   train<-read.table("Project_clean/UCI HAR Dataset/train/X_train.txt")
   train_y<-read.table("Project_clean/UCI HAR Dataset/train/y_train.txt")
   subject_train<-read.table("Project_clean/UCI HAR Dataset/test/subject_train.txt")
+  
   featured<-as.vector(unlist(features[,2]))
   names(test)<-featured
   names(train)<-featured
@@ -19,8 +20,14 @@ run_analysis<- function(directory) {
   #Put in IDs and merge train and test
   test[,"id"]<-subject_test
   train[,"id"]<-subject_train
+  fullset<-rbind(test,train)
+  names(fullset)<-c(featured,"id")
+  fullset<-fullset[,!duplicated(colnames(fullset))]
   
+  #Select only mean and std files
+  mean_std<-select(fullset,id,contains("mean"),contains("std"))
   
-  featured<-as.vector(unlist(features[,2]))
-  #mergd<-merge(test,train, by.x="id",by.y="id",all=TRUE)
+  #Write file
+  write.table(mean_std,"output.txt",row.name=FALSE)
+ 
 }

@@ -24,7 +24,7 @@ run_analysis<- function(directory) {
   names(fullset)<-c(featured,"id")
   fullset<-fullset[,!duplicated(colnames(fullset))]
   
-  #Select only mean and std files
+  #Select only mean and std variables
   mean_std<-select(fullset,id,contains("mean"),contains("std"))
   
   #Write file
